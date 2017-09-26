@@ -54,25 +54,35 @@ public class GameController : MonoBehaviour
 
     public void EnemySelectRandom()
     {
-        ItemBehaviour[] items = grid;
-        for (int i = 0; i > items.Length; i++)
-        {
-            int random = Random.Range(0, i);
-            ItemBehaviour older = items[i];
-            items[i] = items[random];
-            items[random] = older;
-        }
+		ItemBehaviour[] avaiableSlots = GetAvaiableSlots();
 
-        foreach (ItemBehaviour item in items)
-        {
-            if (item.value == SymbolName.N)
-            {
-                item.EnemyClick();
-                break;
-            }
-        }
-
+		if (avaiableSlots.Length != 0) {
+			for (int i = 0; i > avaiableSlots.Length; i++) {
+				int random = Random.Range (0, i);
+				ItemBehaviour older = avaiableSlots [i];
+				avaiableSlots [i] = avaiableSlots [random];
+				avaiableSlots [random] = older;
+			}
+			avaiableSlots [Random.Range (0, avaiableSlots.Length)].EnemyClick ();
+		}
     }
+
+	private ItemBehaviour[] GetAvaiableSlots(){
+		int slotsAvaiable = 0;
+		foreach (ItemBehaviour item in grid)
+			if (item.value == SymbolName.N)
+				slotsAvaiable++;
+
+		ItemBehaviour[] tempItems = new ItemBehaviour [slotsAvaiable];
+		int counter = 0;
+		foreach (ItemBehaviour item in grid)
+			if (item.value == SymbolName.N){
+				tempItems [counter] = item;
+				counter++;
+			}
+
+		return tempItems;
+	}
 
     public void OnSelectSymbol_X()
     {
@@ -149,8 +159,8 @@ public class GameController : MonoBehaviour
 					}
 				}
 
-				//diagonal esquerdo
 				bool isTopRight = j==items.GetLength (0)-1 && i == 0;
+				//diagonal esquerdo
 				if (((j - rayCount) > rayCount && (i - rayCount) > rayCount || isTopRight) && items[j , i].value!=SymbolName.N)
 				{
 					if (items[j , i].value==items[j-1 , i+1].value && items[j , i].value == items[j-2, i+2].value) {
