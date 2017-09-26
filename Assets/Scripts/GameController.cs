@@ -18,6 +18,8 @@ public class GameController : MonoBehaviour
     public SymbolName playerSymbol;
     public SymbolName enemySymbol;
 
+	private bool isWin = false;
+
     private void Awake()
     {
         instance = this;
@@ -36,6 +38,7 @@ public class GameController : MonoBehaviour
         gamePanel.SetActive(false);
         choisingSymbol.SetActive(true);
         roundMessages.text = "Escolha seu simbolo";
+		isWin= false;
     }
 
     private void StartRound()
@@ -54,16 +57,19 @@ public class GameController : MonoBehaviour
 
     public void EnemySelectRandom()
     {
-		ItemBehaviour[] avaiableSlots = GetAvaiableSlots();
 
-		if (avaiableSlots.Length != 0) {
-			for (int i = 0; i > avaiableSlots.Length; i++) {
-				int random = Random.Range (0, i);
-				ItemBehaviour older = avaiableSlots [i];
-				avaiableSlots [i] = avaiableSlots [random];
-				avaiableSlots [random] = older;
+		if (!isWin) {
+			ItemBehaviour[] avaiableSlots = GetAvaiableSlots ();
+
+			if (avaiableSlots.Length != 0) {
+				for (int i = 0; i > avaiableSlots.Length; i++) {
+					int random = Random.Range (0, i);
+					ItemBehaviour older = avaiableSlots [i];
+					avaiableSlots [i] = avaiableSlots [random];
+					avaiableSlots [random] = older;
+				}
+				avaiableSlots [Random.Range (0, avaiableSlots.Length)].EnemyClick ();
 			}
-			avaiableSlots [Random.Range (0, avaiableSlots.Length)].EnemyClick ();
 		}
     }
 
