@@ -132,16 +132,15 @@ public class GameController : MonoBehaviour
 						return true;
 					}
                 }
+				//vertical
+				if ((items.GetLength(0) - i) > rayCount && items[j , i].value!=SymbolName.N)
+				{
+					if (items[j , i].value==items[j , i+1].value && items[j , i].value == items[j, i+2].value) {
+						winner = items [j, i].value;
+						return true;
+					}
+				}
 				/*
-                //vertical
-                if ((items.GetLength(1) - j) >= rayCount)
-                {
-                    if ((items[i, j].value == items[i, j+1].value) && (items[i, j+2].value == items[i , j].value))
-                    {
-                        winner = items[i, j].value;
-                        return true;
-                    }
-                }
                 //diagonal
                 if ((items.GetLength(0) - i) >= rayCount && (items.GetLength(1) - j) >= rayCount)
                 {
