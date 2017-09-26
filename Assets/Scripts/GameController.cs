@@ -155,49 +155,6 @@ public class GameController : MonoBehaviour
         }
         winner = SymbolName.N;
         return false;
-        /*
-        if ((items[0, 0].value == items[0, 1].value) & (items[0, 2].value == items[0, 0].value))
-        {
-            winner = items[0, 0].value;
-            return true;
-        }
-        else if ((items[1, 0].value == items[1, 1].value) & (items[1, 2].value == items[1, 0].value))
-        {
-            winner = items[1, 0].value;
-            return true;
-        }
-        else if ((items[2, 0].value == items[2, 1].value) & (items[2, 2].value == items[2, 0].value))
-        {
-            winner = items[2, 0].value;
-            return true;
-        }
-        else if ((items[0, 0].value == items[1, 0].value) & (items[2, 0].value == items[0, 0].value))
-        {
-            winner = items[0, 0].value;
-            return true;
-        }
-        else if ((items[0, 1].value == items[1, 1].value) & (items[2, 1].value == items[0, 1].value))
-        {
-            winner = items[0, 1].value;
-            return true;
-        }
-        else if ((items[0, 2].value == items[1, 2].value) & (items[2, 2].value == items[0, 2].value))
-        {
-            winner = items[0, 2].value;
-            return true;
-        }
-        else if ((items[0, 0].value == items[1, 1].value) & (items[2, 2].value == items[0, 0].value))
-        {
-            winner = items[0, 0].value;
-            return true;
-        }
-        else if ((items[0, 2].value == items[1, 1].value) & (items[2, 0].value == items[0, 2].value))
-        {
-            winner = items[0, 2].value;
-            return true;
-        }
-        winner = SymbolName.N;
-        return false;*/
     }
 
 
