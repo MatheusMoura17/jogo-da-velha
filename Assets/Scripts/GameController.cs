@@ -142,7 +142,7 @@ public class GameController : MonoBehaviour
                         return true;
                     }
                 }
-                //vertical
+                //diagonal
                 if ((items.GetLength(0) - i) >= rayCount && (items.GetLength(1) - j) >= rayCount)
                 {
                     if ((items[i, j].value == items[i + 1, j + 1].value) && (items[i + 2, j + 2].value == items[i, j].value))
