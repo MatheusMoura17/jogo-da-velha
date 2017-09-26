@@ -125,7 +125,7 @@ public class GameController : MonoBehaviour
             for (int j = 0; j < items.GetLength(1); j++)
             {
                 //horizontal
-				if ((items.GetLength(0) - j) > rayCount && items[j , i].value!=SymbolName.N)
+				if ((items.GetLength(1) - j) > rayCount && items[j , i].value!=SymbolName.N)
                 {
 					if (items[j , i].value==items[j+1 , i].value && items[j , i].value == items[j +2, i].value) {
 						winner = items [j, i].value;
@@ -140,16 +140,24 @@ public class GameController : MonoBehaviour
 						return true;
 					}
 				}
-				/*
-                //diagonal
-                if ((items.GetLength(0) - i) >= rayCount && (items.GetLength(1) - j) >= rayCount)
-                {
-                    if ((items[i, j].value == items[i + 1, j + 1].value) && (items[i + 2, j + 2].value == items[i, j].value))
-                    {
-                        winner = items[i, j].value;
-                        return true;
-                    }
-                }*/
+				//diagonal direito
+				if (((items.GetLength(1) - j) > rayCount && (items.GetLength(0) - i) > rayCount) && items[j , i].value!=SymbolName.N)
+				{
+					if (items[j , i].value==items[j+1 , i+1].value && items[j , i].value == items[j+2, i+2].value) {
+						winner = items [j, i].value;
+						return true;
+					}
+				}
+
+				//diagonal esquerdo
+				bool isTopRight = j==items.GetLength (0)-1 && i == 0;
+				if (((j - rayCount) > rayCount && (i - rayCount) > rayCount || isTopRight) && items[j , i].value!=SymbolName.N)
+				{
+					if (items[j , i].value==items[j-1 , i+1].value && items[j , i].value == items[j-2, i+2].value) {
+						winner = items [j, i].value;
+						return true;
+					}
+				}
             }
         }
         winner = SymbolName.N;
