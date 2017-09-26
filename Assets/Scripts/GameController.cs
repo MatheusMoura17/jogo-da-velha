@@ -125,14 +125,14 @@ public class GameController : MonoBehaviour
             for (int j = 0; j < items.GetLength(1); j++)
             {
                 //horizontal
-                if ((items.GetLength(0) - i) >= rayCount)
+				if ((items.GetLength(0) - j) > rayCount && items[j , i].value!=SymbolName.N)
                 {
-                    if ((items[i , j].value == items[i + 1, j].value) && (items[i + 2, j].value == items[i, j].value))
-                    {
-                        winner = items[i, j].value;
-                        return true;
-                    }
+					if (items[j , i].value==items[j+1 , i].value && items[j , i].value == items[j +2, i].value) {
+						winner = items [j, i].value;
+						return true;
+					}
                 }
+				/*
                 //vertical
                 if ((items.GetLength(1) - j) >= rayCount)
                 {
@@ -150,7 +150,7 @@ public class GameController : MonoBehaviour
                         winner = items[i, j].value;
                         return true;
                     }
-                }
+                }*/
             }
         }
         winner = SymbolName.N;
